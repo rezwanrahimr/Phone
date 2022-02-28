@@ -24,15 +24,33 @@
                 <span class="text-center company-name-text text-white"><span class="fs-1 fw-bold ">Market</span><br>all in one store
                 </span>
                 <span class=" d-flex">
-                    <input class="form-control me-2 explore" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn text-white bg-warning" type="submit">Search</button>
+                    <input id="searchField" class="form-control me-2 explore" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button onclick="searchItem()" class="btn text-white bg-warning" type="submit">Search</button>
                     </sapn>
             </div>
         </nav>
     </header>
 
     <main>
+        <!-- searching items -->
+        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 container mx-auto">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
 
+
+        </div>
     </main>
 
 
