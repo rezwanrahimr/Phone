@@ -2,6 +2,8 @@ const searchItem = () => {
     const searchField = document.getElementById('searchField');
     const searchText = searchField.value;
     searchField.value = "";
+    const detailsItem = document.getElementById('items-details');
+    detailsItem.innerHTML = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
         .then(response => response.json())
@@ -9,10 +11,29 @@ const searchItem = () => {
 
 }
 
-const displaySearchResult = items => {
+const error = () => {
     const searchResult = document.getElementById('search-result');
-    items.forEach(element => {
-        console.log(element);
+    const div = document.createElement('div')
+    div.innerHTML = `
+   
+    
+         
+        <h1 class="text-center bg-dark text-white">Did not match any Phones!</h1>
+                            
+    
+    
+    `
+    searchResult.appendChild(div);
+
+}
+const displaySearchResult = items => {
+    let itemss = items.slice(0, 20);
+    const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+    if (itemss.length == 0) {
+        return error();
+    }
+    itemss.forEach(element => {
         const div = document.createElement('div')
         div.classList.add('col');
         div.innerHTML =
@@ -30,14 +51,15 @@ const displaySearchResult = items => {
 }
 
 const loadDetails = phoneId => {
-    console.log(phoneId)
+
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(response => response.json())
         .then(data => displayItemsDetails(data.data))
 }
+
+
 const displayItemsDetails = item => {
-    const hello = Map.sensors;
     console.log(item);
     const detailsItem = document.getElementById('items-details');
     const div = document.createElement('div');
@@ -51,10 +73,10 @@ const displayItemsDetails = item => {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${item.name}</h5>
-                            <h6 class="">${item.releaseDate}</h6>
-                            <p class="card-text">chipSet: ${item.mainFeatures.chipSet} displaySize: ${item.mainFeatures.displaySize} memory: ${item.mainFeatures.memory}</p>
-                            <p class="card-text">sensors: ${item.mainFeatures.sensors[0]} ${item.mainFeatures.sensors[1]} ${item.mainFeatures.sensors[2]} ${item.mainFeatures.sensors[3]} ${item.mainFeatures.sensors[4]} ${item.mainFeatures.sensors[5]} storage: ${item.mainFeatures.storage}</p> 
-                            <p class="card-text">Bluetooth: ${item.others.Bluetooth} GPS: ${item.others.GPS} NFC: ${item.others.NFC}Radio: ${item.others.Radio}USB: ${item.others.USB}WLAN: ${item.others.WLAN}</p>
+                            <h6 class="" id="release">${item.releaseDate}</h6>
+                            <p class="card-text">chipSet : ${item.mainFeatures.chipSet}<br>displaySize : ${item.mainFeatures.displaySize}<br> memory : ${item.mainFeatures.memory}</p>
+                            <p class="card-text">sensors : ${item.mainFeatures.sensors}<br>storage : ${item.mainFeatures.storage}</p> 
+                            <p class="card-text">Bluetooth : ${item.others.Bluetooth}<br> GPS : ${item.others.GPS}<br> NFC : ${item.others.NFC}<br>Radio : ${item.others.Radio}<br>USB : ${item.others.USB}<br>WLAN : ${item.others.WLAN}</p>
                            
                         </div>
                     </div>
