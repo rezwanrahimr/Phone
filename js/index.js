@@ -13,5 +13,18 @@ const displaySearchResult = items => {
     const searchResult = document.getElementById('search-result');
     items.forEach(element => {
         console.log(element);
+        const div = document.createElement('div')
+        div.classList.add('col');
+        div.innerHTML =
+            ` <div class="card h-100 border-0">
+        <img src="${element.image}" class="card-img-top p-3" alt="...">
+        <div class="card-body ">
+            <h5 class="card-title">${element.phone_name}</h5>
+            <h6 class="card-text">Brand: ${element.brand}</h6>
+            <p class="card-text">${element.slug}</p>
+        </div>
+        <button type="button" class="btn btn-primary">Details</button>
+        </div>`
+        searchResult.appendChild(div);
     });
 }
