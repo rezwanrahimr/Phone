@@ -32,7 +32,7 @@ const displaySearchResult = items => {
         }
         itemss.forEach(element => {
             const div = document.createElement('div')
-            div.classList.add('col');
+
             div.innerHTML =
                 ` <div class="card  border-0 shadow">
         <img src="${element.image}" class="card-img-top p-5 img-fluid" alt="...">
