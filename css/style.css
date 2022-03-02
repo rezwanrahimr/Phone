@@ -1,19 +1,15 @@
-body {
-    width: auto;
-}
+/* header Bg-color */
 
 #header-bg-color {
     background-color: #1752b1;
 }
 
-.explore {
+
+/* input field  */
+
+.inputField {
     width: 700px;
     height: 50px;
     display: flex;
     justify-content: center;
-}
-
-.company-name-text {
-    margin-right: 210px;
-    line-height: 20px;
 }

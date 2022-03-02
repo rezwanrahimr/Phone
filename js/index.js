@@ -1,67 +1,63 @@
-const searchItem = () => {
-    const searchField = document.getElementById('searchField');
-    const searchText = searchField.value;
-    searchField.value = "";
-    const detailsItem = document.getElementById('items-details');
-    detailsItem.innerHTML = '';
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-        .then(response => response.json())
-        .then(data => displaySearchResult(data.data));
+// searching Mobile
+const searchMobile = () => {
+        const searchField = document.getElementById('searchField');
+        const searchText = searchField.value;
+        searchField.value = "";
+        const detailsItem = document.getElementById('items-details');
+        detailsItem.innerHTML = '';
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        fetch(url)
+            .then(response => response.json())
+            .then(data => displaySearchResult(data.data));
 
-}
-
-const error = () => {
-    const searchResult = document.getElementById('search-result');
-    const div = document.createElement('h1')
-    div.innerHTML = `
-   
-    
-         
-        <h1 class="text-center bg-dark text-white">Did not match any Phones!</h1>
-                            
-    
-    
-    `
-    searchResult.appendChild(div);
-
-}
-const displaySearchResult = items => {
-    let itemss = items.slice(0, 20);
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
-    if (itemss.length == 0) {
-        return error();
     }
-    itemss.forEach(element => {
-        const div = document.createElement('div')
-        div.classList.add('col');
-        div.innerHTML =
-            ` <div class="card h-100 border-0">
-        <img src="${element.image}" class="card-img-top p-3" alt="...">
+    // Showing Error.
+const error = () => {
+        const searchResult = document.getElementById('search-result');
+        const div = document.createElement('h1')
+        div.style.margin = '20px auto'
+        div.innerHTML = `
+   <h1 class="text-center bg-dark text-white mx-auto">Did not match any Phones!</h1>
+    `
+        searchResult.appendChild(div);
+
+    }
+    // Display Result.
+const displaySearchResult = items => {
+        let itemss = items.slice(0, 20);
+        const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+        if (itemss.length == 0) {
+            return error();
+        }
+        itemss.forEach(element => {
+            const div = document.createElement('div')
+            div.classList.add('col');
+            div.innerHTML =
+                ` <div class="card  border-0 shadow">
+        <img src="${element.image}" class="card-img-top p-5 img-fluid" alt="...">
         <div class="card-body ">
             <h5 class="card-title">${element.phone_name}</h5>
             <h6 class="card-text">Brand: ${element.brand}</h6>
         </div>
         <button onclick="loadDetails('${element.slug}')" type="button" class="btn btn-primary">Details</button>
         </div>`
-        searchResult.appendChild(div);
+            searchResult.appendChild(div);
 
-    });
-}
-
+        });
+    }
+    // Load Detials data.
 const loadDetails = phoneId => {
 
-    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
-    fetch(url)
-        .then(response => response.json())
-        .then(data => displayItemsDetails(data.data))
-}
-
+        const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
+        fetch(url)
+            .then(response => response.json())
+            .then(data => displayItemsDetails(data.data))
+    }
+    // Display phone details.
 const displayItemsDetails = item => {
     console.log(item);
-    const releaseee = () => {
-
+    const releaseData = () => {
         if (item.releaseDate == '') {
             return div.innerHTML = `
             <h6 id="release">No release Date</h6>
@@ -100,7 +96,7 @@ const displayItemsDetails = item => {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${item.name}</h5>
-                            <h6 class="" id="release">${releaseee()}</h6>
+                            <h6 class="" id="release">${releaseData()}</h6>
                             <p>
                             <b>
                             mainFeatures :<br>
