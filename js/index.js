@@ -13,7 +13,7 @@ const searchItem = () => {
 
 const error = () => {
     const searchResult = document.getElementById('search-result');
-    const div = document.createElement('div')
+    const div = document.createElement('h1')
     div.innerHTML = `
    
     
@@ -58,9 +58,36 @@ const loadDetails = phoneId => {
         .then(data => displayItemsDetails(data.data))
 }
 
-
 const displayItemsDetails = item => {
     console.log(item);
+    const releaseee = () => {
+
+        if (item.releaseDate == '') {
+            return div.innerHTML = `
+            <h6 id="release">No release Date</h6>
+            `
+        } else {
+            return div.innerHTML = `
+            <h6 class="" id="release">${item.releaseDate}</h6>
+            `
+        }
+
+    }
+    const othersDetails = () => {
+        if (item.others == undefined) {
+            return `No others`
+        } else {
+            return `
+            Others :<br>
+            Bluetooth : ${item.others.Bluetooth}<br> 
+            GPS : ${item.others.GPS}<br> 
+            NFC : ${item.others.NFC}<br>
+            Radio : ${item.others.Radio}<br>
+            USB : ${item.others.USB}<br>
+            WLAN : ${item.others.WLAN}</p>
+            `
+        }
+    }
     const detailsItem = document.getElementById('items-details');
     const div = document.createElement('div');
     div.classList.add('card');
@@ -68,15 +95,22 @@ const displayItemsDetails = item => {
     div.innerHTML = `
     <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="${item.image}" class="img-fluid rounded-start" alt="...">
+                        <img src="${item.image}" class="img-fluid rounded-start d-flex align-items-center justify-content-center" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${item.name}</h5>
-                            <h6 class="" id="release">${item.releaseDate}</h6>
-                            <p class="card-text">chipSet : ${item.mainFeatures.chipSet}<br>displaySize : ${item.mainFeatures.displaySize}<br> memory : ${item.mainFeatures.memory}</p>
-                            <p class="card-text">sensors : ${item.mainFeatures.sensors}<br>storage : ${item.mainFeatures.storage}</p> 
-                            <p class="card-text">Bluetooth : ${item.others.Bluetooth}<br> GPS : ${item.others.GPS}<br> NFC : ${item.others.NFC}<br>Radio : ${item.others.Radio}<br>USB : ${item.others.USB}<br>WLAN : ${item.others.WLAN}</p>
+                            <h6 class="" id="release">${releaseee()}</h6>
+                            <p>
+                            <b>
+                            mainFeatures :<br>
+                            chipSet : ${item.mainFeatures.chipSet}<br>
+                            displaySize : ${item.mainFeatures.displaySize}<br> 
+                            memory : ${item.mainFeatures.memory}<br>
+                            sensors : ${item.mainFeatures.sensors}<br>
+                            storage : ${item.mainFeatures.storage}</p>
+                            ${othersDetails()}
+                            
                            
                         </div>
                     </div>
@@ -84,4 +118,5 @@ const displayItemsDetails = item => {
     `
 
     detailsItem.appendChild(div);
+
 }
