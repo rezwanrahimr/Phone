@@ -8,7 +8,7 @@
 /* input field  */
 
 .inputField {
-    width: 700px;
+    width: 80%;
     height: 50px;
     display: flex;
     justify-content: center;

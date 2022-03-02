@@ -34,13 +34,13 @@ const displaySearchResult = items => {
             const div = document.createElement('div')
 
             div.innerHTML =
-                ` <div class="card  border-0 shadow">
-        <img src="${element.image}" class="card-img-top p-5 img-fluid" alt="...">
+                ` <div class="card  border-0 shadow mb-5">
+        <img src="${element.image}" class="card-img-top  img-fluid p-5" alt="...">
         <div class="card-body ">
             <h5 class="card-title">${element.phone_name}</h5>
             <h6 class="card-text">Brand: ${element.brand}</h6>
         </div>
-        <button onclick="loadDetails('${element.slug}')" type="button" class="btn btn-primary">Details</button>
+        <button onclick="loadDetails('${element.slug}')" type="button" class="btn btn-primary ">Details</button>
         </div>`
             searchResult.appendChild(div);
 
@@ -106,8 +106,8 @@ const displayItemsDetails = item => {
                             sensors : ${item.mainFeatures.sensors}<br>
                             storage : ${item.mainFeatures.storage}</p>
                             ${othersDetails()}
-                            
-                           
+
+
                         </div>
                     </div>
                 </div>
